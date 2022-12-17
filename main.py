@@ -4,6 +4,7 @@ import mediapipe as mp
 import time
 import winsound
 import platform
+import os
 
 
 DEBUG = False
@@ -70,8 +71,7 @@ def alertUser():
     if SYSTEM == 'Windows':
         winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
     elif SYSTEM == 'Darwin':
-        # TODO: implement whne Mac
-        pass
+        os.system('say "Stop touching your face"')
 
 
 def determineTouching(face_results, hand_results):
