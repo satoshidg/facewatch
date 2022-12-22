@@ -2,14 +2,16 @@ import sys
 import cv2
 import mediapipe as mp
 import time
-import winsound
 import platform
 import os
 
 
 DEBUG = False
-SYSTEM = platform.system()
 THRESHOLD = 5
+SYSTEM = platform.system()
+
+if SYSTEM == 'Windows':
+    import winsound
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -70,8 +72,9 @@ def main():
 def alertUser():
     if SYSTEM == 'Windows':
         winsound.PlaySound("SystemExclamation", winsound.SND_ALIAS)
+    # Mac
     elif SYSTEM == 'Darwin':
-        os.system('say "Stop touching your face"')
+        os.system('say "Stop"')
 
 
 def determineTouching(face_results, hand_results):
