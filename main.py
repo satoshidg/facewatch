@@ -21,6 +21,7 @@ mp_face_detection = mp.solutions.face_detection
 def main():
     cap = cv2.VideoCapture(0)
     count = 0
+    ignore_frame_count = 0
 
     hands_detector = mp_hands.Hands(
         model_complexity=0,
@@ -36,7 +37,8 @@ def main():
     while cap.isOpened():
         success, image = cap.read()
         if not success:
-            print("Ignoring empty camera frame.")
+            ignore_frame_count += 1
+            print("Ignoring empty camera frame: ", ignore_frame_count)
             # If loading a video, use 'break' instead of 'continue'.
             continue
 
