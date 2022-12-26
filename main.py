@@ -52,7 +52,7 @@ def main():
         if DEBUG:
             displayFrame(image, face_results, hand_results)
 
-        is_touching = determineTouching(face_results, hand_results)
+        is_touching = isTouchingFace(face_results, hand_results)
 
         if is_touching:
             count += 1
@@ -79,7 +79,7 @@ def alertUser():
         os.system('say "Stop"')
 
 
-def determineTouching(face_results, hand_results):
+def isTouchingFace(face_results, hand_results):
     if not(face_results.detections and hand_results.multi_hand_landmarks):
         return False
     
